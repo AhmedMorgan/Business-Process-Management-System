@@ -61,16 +61,6 @@ public class User{
     @JsonBackReference(value = "requests")
     List<Request> requests = new ArrayList<>();
 
-    @ManyToOne(cascade = {
-            CascadeType.MERGE,
-            CascadeType.PERSIST,
-            CascadeType.DETACH,
-            CascadeType.REFRESH
-    })
-    @JoinColumn(name = "managerId")
-    @JsonBackReference(value = "manager")
-    User manager;
-
     @JsonBackReference(value = "shouldApprove")
     @OneToMany(mappedBy = "shouldApprove")
     List<Request> shouldApprove = new ArrayList<>();
