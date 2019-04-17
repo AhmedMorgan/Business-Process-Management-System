@@ -22,14 +22,14 @@ import org.hibernate.annotations.NaturalId;
 @NoArgsConstructor
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
-            "username"
+                "username"
         }),
         @UniqueConstraint(columnNames = {
-            "email"
+                "email"
         })
 })
 public class User{
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -52,14 +52,24 @@ public class User{
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles", 
-    	joinColumns = @JoinColumn(name = "user_id"), 
-    	inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "owner")
     @JsonBackReference(value = "requests")
     List<Request> requests = new ArrayList<>();
+
+    @ManyToOne(cascade = {
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+    })
+    @JoinColumn(name = "managerId")
+    @JsonBackReference(value = "manager")
+    User manager;
 
     @JsonBackReference(value = "shouldApprove")
     @OneToMany(mappedBy = "shouldApprove")
@@ -67,12 +77,13 @@ public class User{
 
     @ManyToMany
     @JoinTable(name = "approves",
-    joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "requestId", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "requestId", referencedColumnName = "id"))
     @JsonBackReference("approvers")
     List<Request> approved = new ArrayList<>();
     public User(String name, String username, String email, String password){
         this.name = name;
+        this.manager = manager;
         this.email = email;
         this.username = username;
         this.password = password;
