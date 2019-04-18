@@ -1,9 +1,11 @@
 package com.grokonez.jwtauthentication.message.request;
 
+import lombok.Data;
+
 import java.util.Set;
 
 import javax.validation.constraints.*;
-
+@Data
 public class SignUpForm {
     @NotBlank
     @Size(min = 3, max = 50)
@@ -23,6 +25,7 @@ public class SignUpForm {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
+
     @NotBlank
     String managerName;
     public String getName() {

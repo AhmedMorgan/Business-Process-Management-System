@@ -80,7 +80,8 @@ public class AuthRestAPIs {
         // Creating user's account
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
-
+        User user1 = userRepository.findByUsername(signUpRequest.getManagerName());
+        user.setManager(user1);
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
 

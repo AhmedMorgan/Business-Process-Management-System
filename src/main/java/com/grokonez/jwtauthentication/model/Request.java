@@ -18,6 +18,9 @@ public class Request {
     @Column(name = "content")
     String content;
 
+    @Column(name = "status")
+    String status;
+
     @ManyToOne(cascade = {
             CascadeType.MERGE,
             CascadeType.PERSIST,

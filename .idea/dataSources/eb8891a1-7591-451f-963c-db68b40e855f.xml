@@ -1460,26 +1460,35 @@ role_id</ColNames>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="360" parent="334" name="UK6dotkott2kjsp8vw4d0m25fb7">
+    <column id="360" parent="334" name="manager_id">
+      <Position>6</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="361" parent="334" name="UK6dotkott2kjsp8vw4d0m25fb7">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="361" parent="334" name="UKr43af9ap4edm43mmtq01oddj6">
+    <index id="362" parent="334" name="UKr43af9ap4edm43mmtq01oddj6">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="362" parent="334" name="PRIMARY">
+    <index id="363" parent="334" name="FK5p1ci5btqfwvtaqx5n2wxi182">
+      <ColNames>manager_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="364" parent="334" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="363" parent="334" name="UK6dotkott2kjsp8vw4d0m25fb7">
+    <key id="365" parent="334" name="UK6dotkott2kjsp8vw4d0m25fb7">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>UK6dotkott2kjsp8vw4d0m25fb7</UnderlyingIndexName>
     </key>
-    <key id="364" parent="334" name="UKr43af9ap4edm43mmtq01oddj6">
+    <key id="366" parent="334" name="UKr43af9ap4edm43mmtq01oddj6">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>UKr43af9ap4edm43mmtq01oddj6</UnderlyingIndexName>
     </key>
